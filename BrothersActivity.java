@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ public class BrothersActivity extends ActionBarActivity {
         setContentView(R.layout.activity_brothers);
         expList = (ExpandableListView) findViewById(R.id.brotherList);
         brothersHashMap = DataProvider.getInfo();
-        brothersList = new ArrayList<String>(brothersHashMap.keySet());
+        brothersList = new ArrayList<>(brothersHashMap.keySet());
         adapt = new DropDownAdapter(this, brothersHashMap, brothersList);
         expList.setAdapter(adapt);
 
@@ -36,7 +36,7 @@ public class BrothersActivity extends ActionBarActivity {
             public boolean setViews(String[] arr, String lineName, String hTown, String mjr, int pic) {
                 TextView v = (TextView) findViewById(R.id.name);
                 String tmp = arr[2];
-                if (lineName == "") {
+                if (lineName.equals("")) {
                     for (int i = 3; i < arr.length; i++) {
                         tmp = tmp + " " + arr[i];
                     }
@@ -50,11 +50,11 @@ public class BrothersActivity extends ActionBarActivity {
                 v.setText(tmp);
 
                 v = (TextView) findViewById(R.id.hometown);
-                if (hTown == "") {v.setText("Hometown:");}
+                if (hTown.equals("")) {v.setText("Hometown:");}
                 else {v.setText(hTown);}
 
                 v = (TextView) findViewById(R.id.major);
-                if (mjr == "") {v.setText("Major:");}
+                if (mjr.equals("")) {v.setText("Major:");}
                 else{v.setText(mjr);}
 
                 ImageView img = (ImageView) findViewById(R.id.headshot);
@@ -62,7 +62,7 @@ public class BrothersActivity extends ActionBarActivity {
                 else {img.setImageResource(pic);}
                 return false;
             }
-            @Override
+            //TODO: read in data fromm external source
             public boolean onChildClick(ExpandableListView parent, View v, int group, int child, long l) {
                 TextView text = (TextView) findViewById(R.id.semester);
                 String temp;
